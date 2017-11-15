@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Тестовое Задание</title>
+</head>
+<body>
+    <div class="section1">
+        <div class="wr">
+            <div class="row row1">
+                <div class="title">
+                    <div class="discr">БЛОКИ ОБУЧЕНИЯ</div>
+                </div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="art">
+                    <div class="discr">АРТ</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="sport">
+                    <div class="discr">СПОРТ</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="stem">
+                    <div class="discr">STEM</div>
+                </div>
+            </div>
+            <div class="row row2">
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="gum">
+                    <div class="discr bigdiscr">ГУМАНИТАРНЫЙ БЛОК</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="it">
+                    <div class="discr">IT</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="media">
+                    <div class="discr">МЕДИА</div>
+                </div>
+                <div class="cont white"></div>
+            </div>
+            <div class="row row3">
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="perfomace">
+                    <div class="discr bigdiscr2">PERFOMANCE</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="polit">
+                    <div class="discr bigdiscr2">ПОЛИТОЛОГ</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="bisnes">
+                    <div class="discr">БИЗНЕС</div>
+                </div>
+                <div class="cont white"></div>
+                <div class="cont blue" onclick="toggleLesson(this)" data-lesson="social">
+                    <div class="discr bigdiscr">СОЦИАЛЬНАЯ ОТВЕТСТВННОСТЬ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section2">
+        <div class="wr">
+            <div class="block1">
+                <div class="discr">65%</div>
+            </div>
+            <div class="block2">
+                <div class="discr">
+                    сегодняшних учеников начальной школы будут работать в профессиях, которых еще не существует. Сейчас главная задача родителя
+                     – дать своему ребенку такое образование, которое поможет адаптироваться к вызовам будущего.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section3">
+        <div class="wr">
+            <div class="info">
+                <div class="title">ПОДАТЬ ЗАЯВКУ</div>
+                <div class="discr">Заполните форму, чтобы записаться на консультацию – это первый шаг к зачислению в школу. Количество мест ограничено</div>
+            </div>
+            <div class="form-cont">
+                <form id="form1" class="order-form" method="POST" accept-charset="utf-8">
+
+                    <!-- Hidden Required Fields -->
+                    <input type="hidden" name="project_name" value="tabachenko.pp.ua">
+                    <input type="hidden" name="admin_email" value="olesya.mrachkovskaya@dec.ua">
+                    <input type="hidden" name="form_subject" value="Первая Форма в Хедере">
+                    <!-- END Hidden Required Fields -->
+
+                    <input type="hidden" name="product_name" value="ПРИГЛАШЕННИЕ НА КОНСУЛЬТАЦИЮ">
+                    <input type="hidden" name="from" value="Заявка с первой формы ТЕСТОВОГО ЗАДАНИЯ">
+
+                    <div class="wr">
+                        <div class="block1">
+                            <div class="form-group">
+                                <label for="name_first" class="control-label">Имя:</label>
+                                <input type="text" class="form-control" name="name" id="name_first" placeholder="Имя" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="control-label">Телефон:</label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Телефон" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label">Email:</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="block2">
+                            <div class="form-group">
+                                <label for="message" class="control-label">Сообщение:</label>
+                                <textarea type="text" class="form-control" name="message" id="message" placeholder="Введите сообщение..." ></textarea>
+                            </div>
+                            <div class="form-group btn-cont">
+                                <button type="submit" form="form1" name="submit">ПОДАТЬ ЗАЯВКУ</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let lesson = '';
+
+        function toggleLesson(element) {
+            const lessonItem = element.dataset.lesson;
+
+            if( lessonItem === lesson) {
+                removeClassFromPrevElem();
+
+                lesson = '';
+            } else {
+                removeClassFromPrevElem();
+                setSelectClassByElement(element);
+
+                lesson = lessonItem;
+            }
+        }
+
+        function removeClassFromPrevElem() {
+            const selectedElement = document.getElementsByClassName('selected')[0];
+
+            if(!!selectedElement) {
+                const { className: classOfSelectedElem } = selectedElement;
+                const nextClassOfSelectedElem = classOfSelectedElem.replace(/selected/g, "");
+                selectedElement.className = nextClassOfSelectedElem;
+            }
+        }
+
+        function setSelectClassByElement(element) {
+            const { className } = element;
+            const nextClassName = `${className} selected`
+            element.className = nextClassName;
+        }
+
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script/maskinput.js"></script>
+    <script src="script/script.js"></script>
+</body>
+</html>
